@@ -53,7 +53,7 @@ const Navbar = () => {
               `font-[500] text-[12px] ${isActive ? 'text-[#FF5103]' : 'hover:text-[#FF5103]'}`
             } to="/my-donations">My Donations</NavLink>
       </ul>
-        <a className="btn text-[14px]">Login</a>
+        <div><a className="btn text-[14px]">Login</a></div>
     </div>
      
     </div>

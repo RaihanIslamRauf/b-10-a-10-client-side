@@ -5,14 +5,17 @@ import AllCampaign from "../components/AllCampaign";
 import AddNewCampaign from "../components/AddNewCampaign";
 import MyCampaign from "../components/MyCampaign";
 import MyDonations from "../components/MyDonations";
+import ErrorPage from "../components/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
         {
             path: "/",
-            element: <Home></Home>
+            element: <Home></Home>,
+            loader: () =>fetch(`http://localhost:5000/campaigns`)
         },
         {
             path: "/all-campaign",
