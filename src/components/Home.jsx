@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from './Banner';
 import RunningCampaign from './RunningCampaign';
 import HowItWorks from './HowItWorks';
+import EfficiencyTransparency from './EfficiencyTransparency';
 
 const Home = () => {
     return (
@@ -9,6 +10,7 @@ const Home = () => {
             <Banner></Banner>
             <RunningCampaign></RunningCampaign>
             <HowItWorks></HowItWorks>
+            <EfficiencyTransparency></EfficiencyTransparency>
         </div>
     );
 };

@@ -21,7 +21,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="bg-gray-100 py-16">
+    <section className="bg-gray-50 py-16 mb-4 rounded-lg">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
           How It Works
