@@ -6,6 +6,7 @@ import AddNewCampaign from "../components/AddNewCampaign";
 import MyCampaign from "../components/MyCampaign";
 import MyDonations from "../components/MyDonations";
 import ErrorPage from "../components/ErrorPage";
+import Details from "../components/Details";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
             path: "/my-donations",
             element:<MyDonations></MyDonations>
         },
+        {
+            path: "/details/:id",
+            element:<Details></Details>,
+            loader: ({params}) => fetch(`http://localhost:5000/campaigns/${params.id}`)
+        }
     ]
   },
 ]);

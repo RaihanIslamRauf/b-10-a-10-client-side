@@ -25,7 +25,7 @@ const Campaign = ({ campaign }) => {
           <p>Min Donation: <span className="text-gray-800 font-semibold">${minimumDonation}</span></p>
           <p>Deadline: <span className="font-semibold">{new Date(deadline).toLocaleDateString()}</span></p>
         </div>
-        <Link to={`/campaign/${_id}`}>
+        <Link to={`/details/${_id}`}>
           <button className="w-full bg-[#FF5103] text-white py-2 rounded-md font-semibold hover:bg-[#e44902] transition">
             See More
           </button>

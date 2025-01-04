@@ -162,7 +162,7 @@ const AddNewCampaign = () => {
           </div>
 
           <div className="form-control mt-6">
-            <button className="btn bg-[#FF5103] text-white">Add Campaign</button>
+            <button className="btn bg-[#FF5103] text-white">Add</button>
           </div>
         </form>
       </div>

@@ -12,7 +12,7 @@ const RunningCampaign = () => {
   
 
   return (
-    <div className="lg:w-4/5 mx-auto py-10">
+    <div className="lg:w-4/5 mx-auto py-6">
       <h1 className="text-4xl font-bold text-center mb-8">Running Campaigns</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 {
