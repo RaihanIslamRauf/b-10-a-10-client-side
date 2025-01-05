@@ -79,7 +79,7 @@ const Login = () => {
             </label>
           </div>
           <div className="form-control mt-6">
-            <button className="btn bg-[#0284C7] rounded-md text-white">
+            <button className="btn bg-[#FF5103] rounded-md text-white">
               Login
             </button>
           </div>
@@ -91,7 +91,7 @@ const Login = () => {
           </p>
         <p className="text-center font-semibold">
           Dont`t have An Account?{" "}
-          <Link to="/register" className="text-sky-600">
+          <Link to="/register" className="text-[#FF5103]">
             Register
           </Link>
         </p>
