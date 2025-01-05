@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLoaderData} from 'react-router-dom';
 import Campaign from './Campaign';
 
 const RunningCampaign = () => {
@@ -8,7 +8,7 @@ const RunningCampaign = () => {
   
   // Debugging logs (optional)
   console.log('campaigns from loader:', campaigns);
-  console.log('Loaded coffees state:', loadedCampaigns);
+  console.log('Loaded campaigns state:', loadedCampaigns);
   
 
   return (
@@ -16,7 +16,7 @@ const RunningCampaign = () => {
       <h1 className="text-4xl font-bold text-center mb-8">Running Campaigns</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 {
-                    // Check if loadedCoffees is an array before mapping
+                    // Check if loadedCampaigns is an array before mapping
                     Array.isArray(loadedCampaigns) && loadedCampaigns.map(campaign => (
                         <Campaign
                             campaign={campaign}

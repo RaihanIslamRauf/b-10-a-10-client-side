@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../provider/AuthProvider'; 
 
 const AddNewCampaign = () => {
+  const { user } = useContext(AuthContext);
+
   const handleAddCampaign = (e) => {
     e.preventDefault();
 
@@ -11,10 +14,17 @@ const AddNewCampaign = () => {
     const description = e.target.description.value;
     const minimumDonation = e.target.minimumDonation.value;
     const deadline = e.target.deadline.value;
-    const userEmail = "user@example.com"; // Replace with dynamic user data if available
-    const userName = "user"; // Replace with dynamic user data if available
 
-    const newCampaign = { imageUrl, title, type, description, minimumDonation, deadline, userEmail, userName };
+    const newCampaign = {
+      imageUrl,
+      title,
+      type,
+      description,
+      minimumDonation,
+      deadline,
+      userEmail: user?.email, 
+      userName: user?.name,
+    };
 
     // Send data to the server and database
     fetch('http://localhost:5000/campaigns', {
@@ -36,7 +46,8 @@ const AddNewCampaign = () => {
           });
           e.target.reset();
         }
-      });
+      })
+      .catch((error) => console.error('Error adding campaign:', error));
   };
 
   return (
@@ -83,11 +94,7 @@ const AddNewCampaign = () => {
               <label className="label">
                 <span className="label-text">Campaign Type</span>
               </label>
-              <select
-                name="type"
-                className="select select-bordered"
-                required
-              >
+              <select name="type" className="select select-bordered" required>
                 <option value="">Select Type</option>
                 <option value="personal issue">Personal Issue</option>
                 <option value="startup">Startup</option>
@@ -142,7 +149,7 @@ const AddNewCampaign = () => {
               </label>
               <input
                 type="text"
-                value="user@example.com"
+                value={user?.email || ''}
                 className="input input-bordered bg-gray-200 cursor-not-allowed"
                 readOnly
               />
@@ -155,7 +162,7 @@ const AddNewCampaign = () => {
             </label>
             <input
               type="text"
-              value="User"
+              value={user?.name}
               className="input input-bordered bg-gray-200 cursor-not-allowed"
               readOnly
             />

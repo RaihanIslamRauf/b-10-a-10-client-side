@@ -1,40 +1,71 @@
-import { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-  const { userLogin, setUser, signInWithGoogle } = useContext(AuthContext);
-  const [error, setError] = useState({});
-  const location = useLocation();
+  const { userLogin, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
 
-
-  const handleSubmit = (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    console.log(email, password);
     userLogin(email, password)
       .then((result) => {
-        const user = result.user;
-        setUser(user);
-        navigate(location?.state ? location.state : "/");
+        console.log(result.user);
+
+        // Update last login time
+        const lastSignInTime = result?.user?.metadata?.lastSignInTime;
+        const loginInfo = { email, lastSignInTime };
+
+        fetch(`http://localhost:5000/users`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(loginInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("sign in info updated in db", data);
+          });
+
+        // Redirect to home page after login
+        navigate("/");
       })
-      .catch((err) => {
-        setError({ ...error, login: err.code })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
+        console.log(result.user);
+
+        const lastSignInTime = result?.user?.metadata?.lastSignInTime;
+        const loginInfo = { email: result.user.email, lastSignInTime };
+
+        fetch(`http://localhost:5000/users`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(loginInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("sign in info updated in db", data);
+          });
+
         navigate("/");
       })
-      .catch((err) => {
-        setError({ ...error, login: err.code })
+      .catch((error) => {
+        console.log(error);
       });
-     ;
   };
 
   return (
@@ -43,7 +74,7 @@ const Login = () => {
         <h2 className="text-2xl font-semibold text-center">
           Login your account
         </h2>
-        <form onSubmit={handleSubmit} className="card-body">
+        <form onSubmit={handleSignIn} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
@@ -67,16 +98,6 @@ const Login = () => {
               className="input input-bordered"
               required
             />
-            {error.login && (
-              <label className="label text-sm text-red-600">
-                {error.login}
-              </label>
-            )}
-            <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
-                Forgot password?
-              </a>
-            </label>
           </div>
           <div className="form-control mt-6">
             <button className="btn bg-[#FF5103] rounded-md text-white">
@@ -85,10 +106,13 @@ const Login = () => {
           </div>
         </form>
         <p className="ml-8 mb-4">
-            <button onClick={handleGoogleSignIn} className="w-1/2 btn bg-red-600 rounded-md text-white">
+          <button
+            onClick={handleGoogleSignIn}
+            className="w-1/2 btn bg-red-600 rounded-md text-white"
+          >
             <FaGoogle></FaGoogle> Login with Google
-            </button>
-          </p>
+          </button>
+        </p>
         <p className="text-center font-semibold">
           Dont`t have An Account?{" "}
           <Link to="/register" className="text-[#FF5103]">

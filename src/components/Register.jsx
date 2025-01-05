@@ -2,14 +2,13 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 const Register = () => {
-  const { createNewUser, setUser } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { createNewUser } = useContext(AuthContext);
   const [error, setError] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const validatePassword = (password) => {
     const errors = [];
@@ -45,22 +44,34 @@ const Register = () => {
 
     createNewUser(email, password)
       .then((result) => {
-        const user = result.user;
-        setUser(user);
-        toast.success("Registration successful!", {
-          position: "top-center",
-          autoClose: 3000,
-        });
-        setTimeout(() => {
-          navigate("/");
-        }, 3000); 
+        const createdAt = result?.user?.metadata?.creationTime;
+        const newUser = { name, email, photo, createdAt };
+
+        // Save new user info to the database
+        fetch(`http://localhost:5000/users`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              // Show success alert
+              Swal.fire({
+                title: "Success!",
+                text: "Your account has been created successfully!",
+                icon: "success",
+                confirmButtonText: "OK",
+              }).then(() => {
+                navigate("/login"); // Navigate to the login page
+              });
+            }
+          });
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        toast.error(`Registration failed: ${errorMessage}`, {
-          position: "top-center",
-          autoClose: 3000,
-        });
+        console.error("Error during registration:", error);
       });
   };
 
@@ -147,7 +158,6 @@ const Register = () => {
           </Link>
         </p>
       </div>
-      <ToastContainer />
     </div>
   );
 };
