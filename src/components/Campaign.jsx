@@ -12,9 +12,6 @@ const Campaign = ({ campaign }) => {
           alt={title}
           className="w-full h-48 object-cover"
         />
-        <div className="absolute top-2 right-2 bg-[#FF5103] text-white px-2 py-1 rounded-md text-xs font-semibold shadow-md">
-          Active
-        </div>
       </figure>
       <div className="p-5 space-y-3">
         <h3 className="text-lg font-bold text-gray-800">{title}</h3>

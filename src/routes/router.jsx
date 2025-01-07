@@ -16,33 +16,43 @@ const router = createBrowserRouter([
     element: <Root></Root>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
-        {
-            path: "/",
-            element: <Home></Home>,
-            loader: () =>fetch(`http://localhost:5000/campaigns`)
-        },
-        {
-            path: "/all-campaign",
-            element: <AllCampaign></AllCampaign>
-        },
-        {
-            path: "/add-new-campaign",
-            element:<AddNewCampaign></AddNewCampaign>
-        },
-        {
-            path: "/my-campaign",
-            element:<MyCampaign></MyCampaign>
-        },
-        {
-            path: "/my-donations",
-            element:<MyDonations></MyDonations>
-        },
-        {
-            path: "/details/:id",
-            element:<Details></Details>,
-            loader: ({params}) => fetch(`http://localhost:5000/campaigns/${params.id}`)
-        },
-    ]
+      {
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch(`http://localhost:5000/campaigns`), 
+      },
+      {
+        path: "/all-campaign",
+        element: <AllCampaign></AllCampaign>, 
+      },
+      {
+        path: "/running-campaign",
+        element: <AllCampaign></AllCampaign>, 
+        loader: () => fetch(`http://localhost:5000/runningCampaigns`), 
+      },
+      {
+        path: "/add-new-campaign",
+        element: <AddNewCampaign></AddNewCampaign>, 
+      },
+      {
+        path: "/my-campaign",
+        element: (
+            <MyCampaign></MyCampaign>
+        ), 
+      },
+      {
+        path: "/my-donations",
+        element: (
+            <MyDonations></MyDonations>
+        ), 
+      },
+      {
+        path: "/details/:id",
+        element: <Details></Details>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/campaigns/${params.id}`), 
+      },
+    ],
   },
   {
     path: "/",
