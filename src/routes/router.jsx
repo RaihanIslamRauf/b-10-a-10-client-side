@@ -10,6 +10,7 @@ import Details from "../components/Details";
 import AuthLayouts from "../layouts/AuthLayouts";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import UpdateCampaign from "../components/UpdateCampaign";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
       {
         path: "/my-campaign",
         element:<MyCampaign></MyCampaign>,
+      },
+      {
+        path: "/updateCampaign/:id",
+        element: <UpdateCampaign></UpdateCampaign>,
+        loader: ({ params }) => fetch(`http://localhost:5000/campaigns/${params.id}`)
       },
       {
         path: "/my-donations",

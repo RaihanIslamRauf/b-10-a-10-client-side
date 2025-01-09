@@ -88,12 +88,12 @@ const MyCampaign = () => {
                   {new Date(campaign.deadline).toLocaleDateString()}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  <Link to={`/updateCoffee/${campaign._id}`}>
-                    <button className="btn join-item bg-green-500">Update</button>
+                  <Link to={`/updateCampaign/${campaign._id}`}>
+                    <button className="btn join-item bg-green-600 text-white">Update</button>
                   </Link>
                   <button
                     onClick={() => handleDelete(campaign._id)}
-                    className="btn join-item bg-red-500"
+                    className="btn join-item bg-red-600 text-white"
                   >
                     Delete
                   </button>
