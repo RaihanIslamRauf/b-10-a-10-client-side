@@ -23,7 +23,7 @@ const AddNewCampaign = () => {
       minimumDonation,
       deadline,
       userEmail: user?.email, 
-      userName: user?.name,
+      userName: user?.displayName,
     };
 
     // Send data to the server and database
@@ -162,7 +162,7 @@ const AddNewCampaign = () => {
             </label>
             <input
               type="text"
-              value={user?.name}
+              value={user?.displayName || 'user'}
               className="input input-bordered bg-gray-200 cursor-not-allowed"
               readOnly
             />
