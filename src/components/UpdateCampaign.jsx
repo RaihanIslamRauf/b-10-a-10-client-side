@@ -30,7 +30,7 @@ const UpdateCampaign = () => {
         };
       
         // Send data to the server and database
-        fetch(`http://localhost:5000/campaign/${_id}`, {
+        fetch(`https://b-10-a-10-server-side.vercel.app/campaign/${_id}`, {
           method: 'PUT',
           headers: {
             'content-type': 'application/json',

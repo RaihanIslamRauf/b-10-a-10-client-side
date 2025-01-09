@@ -12,16 +12,16 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    console.log(email, password);
+    // console.log(email, password);
     userLogin(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         // Update last login time
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email, lastSignInTime };
 
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://b-10-a-10-server-side.vercel.app/users`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
@@ -44,12 +44,12 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email: result.user.email, lastSignInTime };
 
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://b-10-a-10-server-side.vercel.app/users`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

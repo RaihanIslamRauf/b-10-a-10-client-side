@@ -48,7 +48,7 @@ const Register = () => {
         const newUser = { name, email, photo, createdAt };
 
         // Save new user info to the database
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://b-10-a-10-server-side.vercel.app/users`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

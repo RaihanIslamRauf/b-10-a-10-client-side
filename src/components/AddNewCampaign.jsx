@@ -27,7 +27,7 @@ const AddNewCampaign = () => {
     };
 
     // Send data to the server and database
-    fetch('http://localhost:5000/campaigns', {
+    fetch('https://b-10-a-10-server-side.vercel.app/campaigns', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

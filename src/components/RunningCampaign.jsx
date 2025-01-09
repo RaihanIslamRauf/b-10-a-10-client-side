@@ -6,8 +6,8 @@ const RunningCampaign = () => {
   const campaigns = useLoaderData();
   const [loadedCampaigns, setLoadedCampaigns] = useState(campaigns);
 
-  console.log('campaigns from loader:', campaigns);
-  console.log('Loaded campaigns state:', loadedCampaigns);
+  // console.log('campaigns from loader:', campaigns);
+  // console.log('Loaded campaigns state:', loadedCampaigns);
 
   const displayedCampaigns = loadedCampaigns.slice(0, 6);
 

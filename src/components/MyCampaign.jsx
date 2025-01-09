@@ -7,11 +7,11 @@ const MyCampaign = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const [userCampaign, setUserCampaign] = useState([]);
-  console.log(userCampaign);
+  // console.log(userCampaign);
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/user-campaigns/${email}`)
+      fetch(`https://b-10-a-10-server-side.vercel.app/user-campaigns/${email}`)
         .then((res) => res.json())
         .then((data) => setUserCampaign(data))
         .catch((error) => console.error("Error fetching campaigns:", error));
@@ -29,7 +29,7 @@ const MyCampaign = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/user-campaigns/${_id}`, {
+        fetch(`https://b-10-a-10-server-side.vercel.app/user-campaigns/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -58,7 +58,7 @@ const MyCampaign = () => {
       <h1 className="text-4xl font-bold text-center mb-8">My Campaigns</h1>
 
       {userCampaign?.length === 0 ? (
-        <p className="text-center text-gray-600">No campaigns available.</p>
+        <p className="text-center text-gray-600">No campaigns available here.</p>
       ) : (
         <table className="table-auto w-full border-collapse border border-gray-300">
           <thead>

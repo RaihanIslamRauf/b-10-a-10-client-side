@@ -5,7 +5,7 @@ const AllCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/campaigns') 
+    fetch('https://b-10-a-10-server-side.vercel.app/campaigns') 
       .then((res) => res.json())
       .then((data) => setCampaigns(data))
       .catch((error) => console.error('Error fetching campaigns:', error));
