@@ -11,6 +11,7 @@ import AuthLayouts from "../layouts/AuthLayouts";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import UpdateCampaign from "../components/UpdateCampaign";
+import PrivateRoute from "./privateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,26 +34,26 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-new-campaign",
-        element: <AddNewCampaign></AddNewCampaign>, 
+        element: <PrivateRoute><AddNewCampaign></AddNewCampaign></PrivateRoute>, 
       },
       {
         path: "/my-campaign",
-        element:<MyCampaign></MyCampaign>,
+        element:<PrivateRoute><MyCampaign></MyCampaign></PrivateRoute>,
       },
       {
         path: "/updateCampaign/:id",
-        element: <UpdateCampaign></UpdateCampaign>,
+        element: <PrivateRoute><UpdateCampaign></UpdateCampaign></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/campaigns/${params.id}`)
       },
       {
         path: "/my-donations",
         element: (
-            <MyDonations></MyDonations>
+            <PrivateRoute><MyDonations></MyDonations></PrivateRoute>
         ), 
       },
       {
         path: "/details/:id",
-        element: <Details></Details>,
+        element: <PrivateRoute><Details></Details></PrivateRoute>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/campaigns/${params.id}`), 
       },
