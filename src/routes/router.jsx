@@ -24,6 +24,14 @@ const router = createBrowserRouter([
         loader: () => fetch(`https://b-10-a-10-server-side.vercel.app/campaigns`), 
       },
       {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
         path: "/all-campaign",
         element: <AllCampaign></AllCampaign>, 
       },
@@ -59,20 +67,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/",
-    element: <AuthLayouts></AuthLayouts>,
-    children: [
-      {
-        path: "/login",
-        element: <Login></Login>,
-      },
-      {
-        path: "/register",
-        element: <Register></Register>,
-      },
-    ],
-  },
+     
+
 ]);
 
 export default router;

@@ -2,19 +2,26 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import Loader from "../components/Loader"; 
 
 const MyCampaign = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const [userCampaign, setUserCampaign] = useState([]);
-  // console.log(userCampaign);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     if (email) {
       fetch(`https://b-10-a-10-server-side.vercel.app/user-campaigns/${email}`)
         .then((res) => res.json())
-        .then((data) => setUserCampaign(data))
-        .catch((error) => console.error("Error fetching campaigns:", error));
+        .then((data) => {
+          setUserCampaign(data);
+          setLoading(false); // Set loading to false after data is fetched
+        })
+        .catch((error) => {
+          console.error("Error fetching campaigns:", error);
+          setLoading(false); // Handle error and stop loading
+        });
     }
   }, [email]);
 
@@ -41,7 +48,7 @@ const MyCampaign = () => {
                 icon: "success",
               });
 
-              // Update the state to remove the deleted campaign
+              // Updated the state to remove the deleted campaign
               const remainingCampaigns = userCampaign.filter(
                 (campaign) => campaign._id !== _id
               );
@@ -52,6 +59,10 @@ const MyCampaign = () => {
       }
     });
   };
+
+  if (loading) {
+    return <Loader />; 
+  }
 
   return (
     <div className="lg:w-4/5 mx-auto py-6">
@@ -89,7 +100,9 @@ const MyCampaign = () => {
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   <Link to={`/updateCampaign/${campaign._id}`}>
-                    <button className="btn join-item bg-green-600 text-white">Update</button>
+                    <button className="btn join-item bg-green-600 text-white">
+                      Update
+                    </button>
                   </Link>
                   <button
                     onClick={() => handleDelete(campaign._id)}

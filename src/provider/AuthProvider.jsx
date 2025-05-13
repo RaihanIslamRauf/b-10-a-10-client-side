@@ -16,42 +16,46 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Google Auth provider
   const googleProvider = new GoogleAuthProvider();
 
-  // Sign up with email and password
+  // Create account
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // Sign in with email and password
+  // Login
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // Sign in with Google
+  // Google login
   const signInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
-  // Update profile (e.g. displayName, photoURL)
+  // Profile update
   const updateUserProfile = (profile) => {
     return updateProfile(auth.currentUser, profile);
   };
 
-  // Sign out
+  // Logout
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
 
-  // Observe auth state change
+  // Listen for auth changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      if (currentUser) {
+        // Optional: force reload the token or fetch additional user info
+        setUser(currentUser);
+      } else {
+        setUser(null);
+      }
       setLoading(false);
     });
 
@@ -63,7 +67,7 @@ const AuthProvider = ({ children }) => {
     loading,
     createUser,
     signIn,
-    signInWithGoogle, // Add this line to include Google login
+    signInWithGoogle,
     updateUserProfile,
     logOut,
   };

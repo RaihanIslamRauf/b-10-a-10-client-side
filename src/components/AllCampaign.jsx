@@ -1,56 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Loader from '../components/Loader'; // adjust the path if needed
 
 const AllCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://b-10-a-10-server-side.vercel.app/campaigns') 
+    fetch('https://b-10-a-10-server-side.vercel.app/campaigns')
       .then((res) => res.json())
-      .then((data) => setCampaigns(data))
-      .catch((error) => console.error('Error fetching campaigns:', error));
+      .then((data) => {
+        setCampaigns(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching campaigns:', error);
+        setLoading(false);
+      });
   }, []);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
-    <div className="lg:w-4/5 mx-auto py-6 px-4">
+    <div className="mx-auto mt-12 px-4 md:px-8 lg:px-16 mb-12">
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">All Campaigns</h1>
 
       {campaigns.length === 0 ? (
         <p className="text-center text-gray-600">No campaigns available.</p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full border-collapse border border-gray-300">
-            <thead>
-              <tr className="bg-gray-200 text-left">
-                <th className="border border-gray-300 px-4 py-2">Title</th>
-                <th className="border border-gray-300 px-4 py-2">Type</th>
-                <th className="border border-gray-300 px-4 py-2">Minimum Donation</th>
-                <th className="border border-gray-300 px-4 py-2">Deadline</th>
-                <th className="border border-gray-300 px-4 py-2">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {campaigns.map((campaign) => (
-                <tr key={campaign._id} className="hover:bg-gray-100">
-                  <td className="border border-gray-300 px-4 py-2">{campaign.title}</td>
-                  <td className="border border-gray-300 px-4 py-2">{campaign.type}</td>
-                  <td className="border border-gray-300 px-4 py-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {campaigns.map((campaign) => (
+            <div
+              key={campaign._id}
+              className="bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
+            >
+              <img
+                src={campaign.imageUrl}
+                alt={campaign.title}
+                className="w-full h-48 object-cover"
+              />
+
+              <div className="p-5 space-y-3">
+                <h3 className="text-lg font-bold text-gray-800">{campaign.title}</h3>
+                <p className="text-sm text-gray-600">Type: {campaign.type}</p>
+                <p className="text-sm">
+                  Min Donation:{' '}
+                  <span className="text-gray-800 font-semibold">
                     ${campaign.minimumDonation}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
+                  </span>
+                </p>
+                <p className="text-sm">
+                  Deadline:{' '}
+                  <span className="text-gray-700 font-semibold">
                     {new Date(campaign.deadline).toLocaleDateString()}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    <Link to={`/details/${campaign._id}`}>
-                      <button className="btn bg-[#FF5103] text-white py-1 px-3 rounded hover:bg-[#e44902] transition">
-                        See More
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </span>
+                </p>
+              </div>
+
+              <div className="p-5 pt-0">
+                <Link to={`/details/${campaign._id}`}>
+                  <button className="w-full bg-[#FF5103] text-white hover:bg-[#e44902] shadow-md transition-all rounded-md px-4 py-2">
+                    See More
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
