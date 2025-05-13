@@ -9,7 +9,7 @@ const Footer = () => {
         {/* Brand Section */}
         <div className="flex items-center gap-2">
           <RiRefund2Line className="text-[20px] text-orange-500" /> 
-          <h1 className="text-[20px] text-orange-500 font-bold italic">CrowdCube</h1>
+          <h1 className="text-[20px] text-[#FF5103] font-bold italic">CrowdCube</h1>
         </div>
         <p className="text-black dark:text-white max-w-sm ml-2">
           CrowdCube is a leading platform that connects investors with promising startup companies and projects.
@@ -17,7 +17,7 @@ const Footer = () => {
 
         {/* Quick Links */}
         <nav>
-          <h6 className="footer-title text-lg font-semibold mb-3 text-red-500">Quick Links</h6>
+          <h6 className="footer-title text-lg font-semibold mb-3 text-[#FF5103]">Quick Links</h6>
           <ul className="flex flex-col gap-2">
             <li>
               <Link to="/about" className="hover:text-red-500">About Us</Link>
@@ -39,7 +39,7 @@ const Footer = () => {
 
         {/* Social Media Section */}
         <nav>
-          <h6 className="footer-title text-lg font-semibold mb-3 text-red-500">Follow Us</h6>
+          <h6 className="footer-title text-lg font-semibold mb-3 text-[#FF5103]">Follow Us</h6>
           <div className="flex flex-row items-center justify-center gap-4">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-500">
               <FaFacebookF size={24} />

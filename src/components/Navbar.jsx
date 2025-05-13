@@ -6,15 +6,13 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 import { ThemeContext } from "../themeProvider/ThemeProvider";
 
-
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const { darkMode, toggleTheme } = useContext(ThemeContext);// ✅ Access from context
+  const { darkMode, toggleTheme } = useContext(ThemeContext);
   const [fetchedUser, setFetchedUser] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
 
-  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -23,7 +21,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Fetch user
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -37,7 +34,6 @@ const Navbar = () => {
     if (user) fetchUsers();
   }, [user]);
 
-  // Logout
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -58,7 +54,6 @@ const Navbar = () => {
       });
   };
 
-  // NavLink styling
   const navLinkStyle = ({ isActive }) =>
     `font-semibold text-sm transition-all duration-300 px-3 py-2 rounded-md ${
       isActive
@@ -112,7 +107,7 @@ const Navbar = () => {
           {/* Dark Mode Toggle */}
           <button
             onClick={toggleTheme}
-            className="text-xl px-3 py-1 rounded-full bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition"
+            className="text-xl px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition"
             title="Toggle Theme"
           >
             {darkMode ? "🌞" : "🌙"}
@@ -122,15 +117,19 @@ const Navbar = () => {
             <div className="flex items-center gap-3">
               <div className="relative group cursor-pointer">
                 <img
-                  src={
-                    fetchedUser?.photo || user.photoURL || "/default-avatar.png"
-                  }
+                  src={fetchedUser?.photo || user.photoURL || "/default-avatar.png"}
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full border-2 border-[#FF5103] object-cover"
                 />
-                <span className="absolute top-full mt-1 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition whitespace-nowrap z-50">
-                  {fetchedUser?.name || user.displayName || "User"}
-                </span>
+                {/* Dropdown */}
+                <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-all z-50 p-4 text-sm text-black dark:text-white">
+                  <p className="font-semibold truncate">
+                    {fetchedUser?.name || user.displayName || "User"}
+                  </p>
+                  <p className="text-xs text-gray-600 dark:text-gray-300 truncate">
+                    {fetchedUser?.email || user.email || "No Email"}
+                  </p>
+                </div>
               </div>
               <button
                 onClick={handleLogOut}
