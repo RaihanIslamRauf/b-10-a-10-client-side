@@ -17,21 +17,25 @@ const MyDonations = () => {
   }, [user?.email]);
 
   if (loading) {
-    return <Loader />; 
+    return <Loader />;
   }
 
   return (
     <div className="max-w-7xl w-11/12 mx-auto py-10 px-4">
-      <h1 className="text-4xl font-bold text-center mb-10">My Donations</h1>
+      <h1 className="text-4xl font-bold text-center mb-10 text-black dark:text-white">
+        My Donations
+      </h1>
 
       {donations.length === 0 ? (
-        <p className="text-center text-gray-600">You haven't donated to any campaigns yet.</p>
+        <p className="text-center text-gray-700 dark:text-gray-300">
+          You haven't donated to any campaigns yet.
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {donations.map((donation) => (
             <div
               key={donation._id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-transform transform hover:scale-105"
+              className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-transform transform hover:scale-105"
             >
               <img
                 src={donation.imageUrl}
@@ -40,10 +44,18 @@ const MyDonations = () => {
               />
 
               <div className="p-5 space-y-2">
-                <h3 className="text-lg font-bold text-gray-800">{donation.title}</h3>
-                <p className="text-sm text-gray-600">Type: {donation.type}</p>
-                <p className="text-sm">Min Donation: ${donation.minimumDonation}</p>
-                <p className="text-sm">Deadline: {new Date(donation.deadline).toLocaleDateString()}</p>
+                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">
+                  {donation.title}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Type: {donation.type}
+                </p>
+                <p className="text-sm text-black dark:text-gray-200">
+                  Min Donation: ${donation.minimumDonation}
+                </p>
+                <p className="text-sm text-black dark:text-gray-200">
+                  Deadline: {new Date(donation.deadline).toLocaleDateString()}
+                </p>
               </div>
 
               <div className="p-5 pt-0">

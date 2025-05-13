@@ -4,14 +4,17 @@ import { RiRefund2Line } from "react-icons/ri";
 import { FaBars } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import { ThemeContext } from "../themeProvider/ThemeProvider";
+
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const { darkMode, toggleTheme } = useContext(ThemeContext);// ✅ Access from context
   const [fetchedUser, setFetchedUser] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
 
-  // Handle navbar scroll effect
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -20,7 +23,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Fetch user data from backend
+  // Fetch user
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -34,7 +37,7 @@ const Navbar = () => {
     if (user) fetchUsers();
   }, [user]);
 
-  // Logout handler
+  // Logout
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -55,31 +58,30 @@ const Navbar = () => {
       });
   };
 
-  // NavLink style
+  // NavLink styling
   const navLinkStyle = ({ isActive }) =>
     `font-semibold text-sm transition-all duration-300 px-3 py-2 rounded-md ${
       isActive
         ? "text-[#FF5103] border border-[#FF5103]"
-        : "text-black hover:text-[#FF5103] hover:bg-gray-100"
+        : "text-black dark:text-white hover:text-[#FF5103] hover:bg-gray-100 dark:hover:bg-gray-800"
     }`;
 
   return (
     <div
-      className={`sticky top-0 z-50 bg-gray-200 shadow-md transition-all duration-300 ${
+      className={`sticky top-0 z-50 transition-all duration-300 shadow-md ${
         isScrolled ? "backdrop-blur-md bg-opacity-90" : ""
-      }`}
+      } bg-white dark:bg-gray-900`}
     >
-      <div className="navbar px-4 md:px-8 lg:px-16">
+      <div className="navbar px-4 md:px-8 lg:px-16 text-black dark:text-white">
         {/* Start */}
         <div className="navbar-start">
-          {/* Mobile menu */}
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <FaBars className="text-[20px] text-[#FF5103]" />
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm font-semibold dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 z-50 text-black"
+              className="menu menu-sm font-semibold dropdown-content mt-3 p-2 shadow bg-white dark:bg-gray-800 rounded-box w-52 z-50 text-black dark:text-white"
             >
               <NavLink className={navLinkStyle} to="/">Home</NavLink>
               <NavLink className={navLinkStyle} to="/all-campaign">All Campaign</NavLink>
@@ -94,7 +96,7 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        {/* Center (Desktop Nav) */}
+        {/* Center */}
         <div className="hidden lg:flex navbar-center">
           <ul className="flex gap-4">
             <NavLink className={navLinkStyle} to="/">Home</NavLink>
@@ -105,16 +107,23 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* End Section (Right) */}
+        {/* End */}
         <div className="navbar-end gap-3 items-center">
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="text-xl px-3 py-1 rounded-full bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition"
+            title="Toggle Theme"
+          >
+            {darkMode ? "🌞" : "🌙"}
+          </button>
+
           {user ? (
             <div className="flex items-center gap-3">
               <div className="relative group cursor-pointer">
                 <img
                   src={
-                    fetchedUser?.photo ||
-                    user.photoURL ||
-                    "/default-avatar.png"
+                    fetchedUser?.photo || user.photoURL || "/default-avatar.png"
                   }
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full border-2 border-[#FF5103] object-cover"

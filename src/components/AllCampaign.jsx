@@ -25,16 +25,20 @@ const AllCampaign = () => {
 
   return (
     <div className="mx-auto mt-12 px-4 md:px-8 lg:px-16 mb-12">
-      <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">All Campaigns</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 dark:text-white">
+        All Campaigns
+      </h1>
 
       {campaigns.length === 0 ? (
-        <p className="text-center text-gray-600">No campaigns available.</p>
+        <p className="text-center text-gray-600 dark:text-gray-300">
+          No campaigns available.
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {campaigns.map((campaign) => (
             <div
               key={campaign._id}
-              className="bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
+              className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
             >
               <img
                 src={campaign.imageUrl}
@@ -43,17 +47,17 @@ const AllCampaign = () => {
               />
 
               <div className="p-5 space-y-3">
-                <h3 className="text-lg font-bold text-gray-800">{campaign.title}</h3>
-                <p className="text-sm text-gray-600">Type: {campaign.type}</p>
-                <p className="text-sm">
+                <h3 className="text-lg font-bold text-gray-800 dark:text-white">{campaign.title}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Type: {campaign.type}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   Min Donation:{' '}
-                  <span className="text-gray-800 font-semibold">
+                  <span className="text-gray-800 dark:text-white font-semibold">
                     ${campaign.minimumDonation}
                   </span>
                 </p>
-                <p className="text-sm">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   Deadline:{' '}
-                  <span className="text-gray-700 font-semibold">
+                  <span className="text-gray-700 dark:text-white font-semibold">
                     {new Date(campaign.deadline).toLocaleDateString()}
                   </span>
                 </p>

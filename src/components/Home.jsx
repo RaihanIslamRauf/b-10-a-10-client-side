@@ -6,7 +6,7 @@ import EfficiencyTransparency from './EfficiencyTransparency';
 
 const Home = () => {
     return (
-        <div className="w-full mx-auto bg-base-200 px-4 md:px-8">
+        <div className="w-full mx-auto bg-[#E2DFD2] dark:bg-gray-800 px-4 md:px-8">
             <Banner />
             <RunningCampaign />
             <HowItWorks />

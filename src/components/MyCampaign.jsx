@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
-import Loader from "../components/Loader"; 
+import Loader from "../components/Loader";
 
 const MyCampaign = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const [userCampaign, setUserCampaign] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (email) {
@@ -16,11 +16,11 @@ const MyCampaign = () => {
         .then((res) => res.json())
         .then((data) => {
           setUserCampaign(data);
-          setLoading(false); // Set loading to false after data is fetched
+          setLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching campaigns:", error);
-          setLoading(false); // Handle error and stop loading
+          setLoading(false);
         });
     }
   }, [email]);
@@ -42,13 +42,7 @@ const MyCampaign = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your campaign has been deleted.",
-                icon: "success",
-              });
-
-              // Updated the state to remove the deleted campaign
+              Swal.fire("Deleted!", "Your campaign has been deleted.", "success");
               const remainingCampaigns = userCampaign.filter(
                 (campaign) => campaign._id !== _id
               );
@@ -60,61 +54,73 @@ const MyCampaign = () => {
     });
   };
 
-  if (loading) {
-    return <Loader />; 
-  }
+  if (loading) return <Loader />;
 
   return (
-    <div className="lg:w-4/5 mx-auto py-6">
-      <h1 className="text-4xl font-bold text-center mb-8">My Campaigns</h1>
+    <div className="lg:w-4/5 mx-auto py-6 px-4">
+      <h1 className="text-4xl font-bold text-center mb-8 text-black dark:text-white">
+        My Campaigns
+      </h1>
 
       {userCampaign?.length === 0 ? (
-        <p className="text-center text-gray-600">No campaigns available here.</p>
+        <p className="text-center text-black dark:text-gray-300">
+          No campaigns available here.
+        </p>
       ) : (
-        <table className="table-auto w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200 text-left">
-              <th className="border border-gray-300 px-4 py-2">Title</th>
-              <th className="border border-gray-300 px-4 py-2">Type</th>
-              <th className="border border-gray-300 px-4 py-2">
-                Minimum Donation
-              </th>
-              <th className="border border-gray-300 px-4 py-2">Deadline</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {userCampaign?.map((campaign) => (
-              <tr key={campaign?._id} className="hover:bg-gray-100">
-                <td className="border border-gray-300 px-4 py-2">
-                  {campaign?.title}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {campaign?.type}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  ${campaign?.minimumDonation}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {new Date(campaign.deadline).toLocaleDateString()}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <Link to={`/updateCampaign/${campaign._id}`}>
-                    <button className="btn join-item bg-green-600 text-white">
-                      Update
-                    </button>
-                  </Link>
-                  <button
-                    onClick={() => handleDelete(campaign._id)}
-                    className="btn join-item bg-red-600 text-white"
-                  >
-                    Delete
-                  </button>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="table-auto w-full border-collapse border border-gray-300 dark:border-gray-700">
+            <thead>
+              <tr className="bg-gray-50 dark:bg-gray-900 text-left">
+                <th className="border border-gray-300 dark:border-gray-900 px-4 py-2 text-black dark:text-gray-200">
+                  Title
+                </th>
+                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-200">
+                  Type
+                </th>
+                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-200">
+                  Minimum Donation
+                </th>
+                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-200">
+                  Deadline
+                </th>
+                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-200">
+                  Actions
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {userCampaign?.map((campaign) => (
+                <tr key={campaign?._id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-100">
+                    {campaign?.title}
+                  </td>
+                  <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-100">
+                    {campaign?.type}
+                  </td>
+                  <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-100">
+                    ${campaign?.minimumDonation}
+                  </td>
+                  <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-100">
+                    {new Date(campaign.deadline).toLocaleDateString()}
+                  </td>
+                  <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 space-x-2">
+                    <Link to={`/updateCampaign/${campaign._id}`}>
+                      <button className="btn bg-green-600 hover:bg-green-700 text-white">
+                        Update
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(campaign._id)}
+                      className="btn bg-red-600 hover:bg-red-700 text-white"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

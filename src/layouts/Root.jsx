@@ -9,7 +9,7 @@ const Root = () => {
       <Navbar />
 
       {/* Page content with similar left and right spacing like Navbar */}
-      <main className="flex-grow w-full mx-auto bg-base-200 px-4 md:px-8">
+      <main className="flex-grow w-full mx-auto bg-[#E2DFD2] dark:bg-gray-800  px-4 md:px-8">
         <Outlet />
       </main>
 

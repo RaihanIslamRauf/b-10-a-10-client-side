@@ -21,22 +21,24 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="bg-gray-50 py-16 mb-4 rounded-lg">
+    <section className="bg-gray-50 dark:bg-gray-700 py-16 mb-4 rounded-lg">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">
           How It Works
         </h2>
         <div className="flex flex-col md:flex-row justify-center items-start gap-8">
           {steps.map((step, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-lg p-6 text-center flex-1"
+              className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 text-center flex-1"
             >
               <div className="text-4xl mb-4">{step.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-700 mb-2">
+              <h3 className="text-xl font-semibold text-gray-700 dark:text-white mb-2">
                 {step.title}
               </h3>
-              <p className="text-gray-600">{step.description}</p>
+              <p className="text-gray-600 dark:text-gray-300">
+                {step.description}
+              </p>
             </div>
           ))}
         </div>

@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-200 text-black  p-10">
+    <footer className="bg-white dark:bg-gray-900 text-black dark:text-white p-10">
       <div className="px-4 md:px-8 lg:px-16 footer lg:flex-row flex-col justify-between items-start gap-8">
         {/* Brand Section */}
         <div className="flex items-center gap-2">
           <RiRefund2Line className="text-[20px] text-orange-500" /> 
           <h1 className="text-[20px] text-orange-500 font-bold italic">CrowdCube</h1>
         </div>
-        <p className="text-black max-w-sm ml-2">
+        <p className="text-black dark:text-white max-w-sm ml-2">
           CrowdCube is a leading platform that connects investors with promising startup companies and projects.
         </p>
 

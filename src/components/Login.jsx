@@ -30,11 +30,22 @@ const Login = () => {
             console.log("Sign-in info updated in DB", data);
           });
 
+        // Show success alert for normal login
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: "You have successfully logged in.",
+        });
+
         navigate("/");
       })
       .catch((error) => {
         console.error("Login error:", error);
-        alert("Failed to log in. Please check your credentials.");
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: "Failed to log in. Please check your credentials.",
+        });
       });
   };
 
@@ -56,7 +67,6 @@ const Login = () => {
             console.log("Sign-in info updated in DB", data);
           });
 
-        // Show success SweetAlert
         Swal.fire({
           icon: "success",
           title: "Login Successful",
@@ -67,7 +77,6 @@ const Login = () => {
       })
       .catch((error) => {
         console.error("Google sign-in error:", error);
-        // Show error SweetAlert
         Swal.fire({
           icon: "error",
           title: "Google Login Failed",
@@ -77,51 +86,55 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-200 flex justify-center items-center">
-      <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-md p-10">
-        <h2 className="text-2xl font-semibold text-center">Login your account</h2>
-        <form onSubmit={handleSignIn} className="card-body">
+    <div className="min-h-screen bg-[#E2DFD2] dark:bg-gray-800 flex justify-center items-center px-4">
+      <div className="card w-full max-w-lg bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white rounded-md p-10 shadow-md">
+        <h2 className="text-2xl font-semibold text-center mb-4">
+          Login to your account
+        </h2>
+        <form onSubmit={handleSignIn} className="card-body p-0 space-y-4">
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text text-gray-700 dark:text-gray-300">Email</span>
             </label>
             <input
               name="email"
               type="email"
               placeholder="email"
-              className="input input-bordered"
+              className="input input-bordered bg-gray-100 dark:bg-gray-800 dark:border-gray-700 text-gray-800 dark:text-white"
               required
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text text-gray-700 dark:text-gray-300">Password</span>
             </label>
             <input
               name="password"
               type="password"
               placeholder="password"
-              className="input input-bordered"
+              className="input input-bordered bg-gray-100 dark:bg-gray-800 dark:border-gray-700 text-gray-800 dark:text-white"
               required
             />
           </div>
-          <div className="form-control mt-6">
-            <button className="btn bg-[#FF5103] rounded-md text-white">
+          <div className="form-control">
+            <button className="btn bg-[#FF5103] hover:bg-[#e44902] text-white rounded-md">
               Login
             </button>
           </div>
         </form>
-        <p className="ml-8 mb-4">
+
+        <div className="flex justify-center mt-4">
           <button
             onClick={handleGoogleSignIn}
-            className="w-1/2 btn bg-red-600 rounded-md text-white"
+            className="btn bg-red-600 hover:bg-red-700 text-white rounded-md w-full md:w-1/2"
           >
-            <FaGoogle /> Login with Google
+            <FaGoogle className="mr-2" /> Login with Google
           </button>
-        </p>
-        <p className="text-center font-semibold">
+        </div>
+
+        <p className="text-center font-semibold mt-4 text-gray-700 dark:text-gray-300">
           Don’t have an account?{" "}
-          <Link to="/register" className="text-[#FF5103]">
+          <Link to="/register" className="text-[#FF5103] hover:underline">
             Register
           </Link>
         </p>
