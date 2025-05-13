@@ -21,15 +21,11 @@ const features = [
 
 const EfficiencyTransparency = () => {
   return (
-    <section className="bg-gray-50 py-16 rounded-lg">
+    <section className="bg-gray-50 py-16 rounded-lg mb-6">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
           Our Efficiency & Transparency
         </h2>
-        <p className="text-center text-gray-600 mb-12">
-          We are committed to providing seamless processes and full visibility 
-          for your peace of mind.
-        </p>
         <div className="flex flex-col md:flex-row justify-center items-start gap-8">
           {features.map((feature, index) => (
             <div

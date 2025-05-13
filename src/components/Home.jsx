@@ -6,11 +6,11 @@ import EfficiencyTransparency from './EfficiencyTransparency';
 
 const Home = () => {
     return (
-        <div>
-            <Banner></Banner>
-            <RunningCampaign></RunningCampaign>
-            <HowItWorks></HowItWorks>
-            <EfficiencyTransparency></EfficiencyTransparency>
+        <div className="w-full mx-auto bg-base-200 px-4 md:px-8">
+            <Banner />
+            <RunningCampaign />
+            <HowItWorks />
+            <EfficiencyTransparency />
         </div>
     );
 };
