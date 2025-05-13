@@ -7,7 +7,6 @@ import MyCampaign from "../components/MyCampaign";
 import MyDonations from "../components/MyDonations";
 import ErrorPage from "../components/ErrorPage";
 import Details from "../components/Details";
-import AuthLayouts from "../layouts/AuthLayouts";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import UpdateCampaign from "../components/UpdateCampaign";
