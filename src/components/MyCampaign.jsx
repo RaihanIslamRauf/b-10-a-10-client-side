@@ -104,7 +104,7 @@ const MyCampaign = () => {
                     {new Date(campaign.deadline).toLocaleDateString()}
                   </td>
                   <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 space-x-2">
-                    <Link to={`/updateCampaign/${campaign._id}`}>
+                    <Link to={`/dashboard/updateCampaign/${campaign._id}`}>
                       <button className="btn bg-green-600 hover:bg-green-700 text-white">
                         Update
                       </button>

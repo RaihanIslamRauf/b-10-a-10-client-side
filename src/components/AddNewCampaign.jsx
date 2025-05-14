@@ -68,7 +68,7 @@ const AddNewCampaign = () => {
                 type="text"
                 name="imageUrl"
                 placeholder="Image URL"
-                className="input input-bordered bg-white dark:bg-gray-900 dark:text-white placeholder-gray-400"
+                className="input input-bordered bg-white dark:bg-gray-900 text-black dark:text-white placeholder-gray-400"
                 required
               />
             </div>
@@ -80,7 +80,7 @@ const AddNewCampaign = () => {
                 type="text"
                 name="title"
                 placeholder="Campaign Title"
-                className="input input-bordered bg-white dark:bg-gray-900 dark:text-white placeholder-gray-400"
+                className="input input-bordered bg-white dark:bg-gray-900 text-black dark:text-white placeholder-gray-400"
                 required
               />
             </div>
@@ -94,7 +94,7 @@ const AddNewCampaign = () => {
               </label>
               <select
                 name="type"
-                className="select select-bordered bg-white dark:bg-gray-900 dark:text-white"
+                className="select select-bordered text-black bg-white dark:bg-gray-900 dark:text-white"
                 required
               >
                 <option value="">Select Type</option>
@@ -112,7 +112,7 @@ const AddNewCampaign = () => {
                 type="number"
                 name="minimumDonation"
                 placeholder="Minimum Donation"
-                className="input input-bordered bg-white dark:bg-gray-900 dark:text-white placeholder-gray-400"
+                className="input input-bordered bg-white dark:bg-gray-900 text-black dark:text-white placeholder-gray-400"
                 required
               />
             </div>
@@ -126,7 +126,7 @@ const AddNewCampaign = () => {
             <textarea
               name="description"
               placeholder="Campaign Description"
-              className="textarea textarea-bordered bg-white dark:bg-gray-900 dark:text-white placeholder-gray-400"
+              className="textarea textarea-bordered bg-white dark:bg-gray-900 text-black dark:text-white placeholder-gray-400"
               rows="4"
               required
             ></textarea>
@@ -141,7 +141,7 @@ const AddNewCampaign = () => {
               <input
                 type="date"
                 name="deadline"
-                className="input input-bordered bg-white dark:bg-gray-900 dark:text-white"
+                className="input input-bordered bg-white dark:bg-gray-900 text-black dark:text-white placeholder-gray-400 [&::-webkit-calendar-picker-indicator]:invert dark:[&::-webkit-calendar-picker-indicator]:invert-0"
                 required
               />
             </div>
@@ -152,7 +152,7 @@ const AddNewCampaign = () => {
               <input
                 type="text"
                 value={user?.email || ''}
-                className="input input-bordered bg-white dark:bg-gray-700 dark:text-white cursor-not-allowed"
+                className="input input-bordered bg-white dark:bg-gray-700 text-black dark:text-white cursor-not-allowed"
                 readOnly
               />
             </div>
@@ -166,7 +166,7 @@ const AddNewCampaign = () => {
             <input
               type="text"
               value={user?.displayName || 'user'}
-              className="input input-bordered bg-white dark:bg-gray-700 dark:text-white cursor-not-allowed"
+              className="input input-bordered bg-white dark:bg-gray-700 text-black dark:text-white cursor-not-allowed"
               readOnly
             />
           </div>

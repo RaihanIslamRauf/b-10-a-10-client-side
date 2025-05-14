@@ -59,7 +59,7 @@ const MyDonations = () => {
               </div>
 
               <div className="p-5 pt-0">
-                <Link to={`/details/${donation._id}`}>
+                <Link to={`/dashboard/details/${donation._id}`}>
                   <button className="w-full bg-[#FF5103] text-white hover:bg-[#e44902] transition-all rounded-md px-4 py-2">
                     View Details
                   </button>

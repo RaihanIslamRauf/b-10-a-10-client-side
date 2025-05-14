@@ -11,6 +11,9 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import UpdateCampaign from "../components/UpdateCampaign";
 import PrivateRoute from "./privateRoute";
+import DashboardLayout from "../dashboard/DashboardLayout";
+import Overview from "../dashboard/Overview";
+import Profile from "../dashboard/Profile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,7 +23,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch(`https://b-10-a-10-server-side.vercel.app/campaigns`), 
+        loader: () =>
+          fetch(`https://b-10-a-10-server-side.vercel.app/campaigns`),
       },
       {
         path: "/login",
@@ -32,42 +36,78 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-campaign",
-        element: <AllCampaign></AllCampaign>, 
+        element: <AllCampaign></AllCampaign>,
       },
       {
         path: "/running-campaign",
-        element: <AllCampaign></AllCampaign>, 
-        loader: () => fetch(`https://b-10-a-10-server-side.vercel.app/runningCampaigns`), 
+        element: <AllCampaign></AllCampaign>,
+        loader: () =>
+          fetch(`https://b-10-a-10-server-side.vercel.app/runningCampaigns`),
       },
       {
-        path: "/add-new-campaign",
-        element: <PrivateRoute><AddNewCampaign></AddNewCampaign></PrivateRoute>, 
-      },
-      {
-        path: "/my-campaign",
-        element:<PrivateRoute><MyCampaign></MyCampaign></PrivateRoute>,
-      },
-      {
-        path: "/updateCampaign/:id",
-        element: <PrivateRoute><UpdateCampaign></UpdateCampaign></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://b-10-a-10-server-side.vercel.app/campaigns/${params.id}`)
-      },
-      {
-        path: "/my-donations",
+        path: "/dashboard",
         element: (
-            <PrivateRoute><MyDonations></MyDonations></PrivateRoute>
-        ), 
-      },
-      {
-        path: "/details/:id",
-        element: <PrivateRoute><Details></Details></PrivateRoute>,
-        loader: ({ params }) =>
-          fetch(`https://b-10-a-10-server-side.vercel.app/campaigns/${params.id}`), 
+          <PrivateRoute>
+            <DashboardLayout></DashboardLayout>
+          </PrivateRoute>
+        ),
+        children: [
+          {
+            path: "overview",
+            element: (
+                <Overview></Overview>
+            ),
+          },
+          {
+            path: "profile",
+            element: (
+                <Profile></Profile>
+            ),
+          },
+          {
+            path: "add-new-campaign",
+            element: (
+                <AddNewCampaign></AddNewCampaign>
+            ),
+          },
+          {
+            path: "my-campaign",
+            element: (
+              <PrivateRoute>
+                <MyCampaign></MyCampaign>
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: "updateCampaign/:id",
+            element: (
+                <UpdateCampaign></UpdateCampaign>
+            ),
+            loader: ({ params }) =>
+              fetch(
+                `https://b-10-a-10-server-side.vercel.app/campaigns/${params.id}`
+              ),
+          },
+          {
+            path: "my-donations",
+            element: (
+                <MyDonations></MyDonations>
+            ),
+          },
+          {
+            path: "details/:id",
+            element: (
+                <Details></Details>
+            ),
+            loader: ({ params }) =>
+              fetch(
+                `https://b-10-a-10-server-side.vercel.app/campaigns/${params.id}`
+              ),
+          },
+        ],
       },
     ],
   },
-     
-
 ]);
 
 export default router;

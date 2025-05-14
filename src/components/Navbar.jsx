@@ -80,9 +80,7 @@ const Navbar = () => {
             >
               <NavLink className={navLinkStyle} to="/">Home</NavLink>
               <NavLink className={navLinkStyle} to="/all-campaign">All Campaign</NavLink>
-              <NavLink className={navLinkStyle} to="/add-new-campaign">Add New Campaign</NavLink>
-              <NavLink className={navLinkStyle} to="/my-campaign">My Campaign</NavLink>
-              <NavLink className={navLinkStyle} to="/my-donations">My Donations</NavLink>
+              <NavLink className={navLinkStyle} to="/dashboard">Dashboard</NavLink>
             </ul>
           </div>
           <NavLink to="/" className="btn btn-ghost text-xl flex items-center gap-1">
@@ -91,19 +89,15 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        {/* Center */}
-        <div className="hidden lg:flex navbar-center">
+        {/* End */}
+        <div className="navbar-end gap-3 items-center">
+          {/* Center Nav Links */}
           <ul className="flex gap-4">
             <NavLink className={navLinkStyle} to="/">Home</NavLink>
             <NavLink className={navLinkStyle} to="/all-campaign">All Campaign</NavLink>
-            <NavLink className={navLinkStyle} to="/add-new-campaign">Add New Campaign</NavLink>
-            <NavLink className={navLinkStyle} to="/my-campaign">My Campaign</NavLink>
-            <NavLink className={navLinkStyle} to="/my-donations">My Donations</NavLink>
+            <NavLink className={navLinkStyle} to="/dashboard">Dashboard</NavLink>
           </ul>
-        </div>
 
-        {/* End */}
-        <div className="navbar-end gap-3 items-center">
           {/* Dark Mode Toggle */}
           <button
             onClick={toggleTheme}

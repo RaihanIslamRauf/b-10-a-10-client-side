@@ -29,7 +29,7 @@ const Campaign = ({ campaign }) => {
 
       {/* Full width button section */}
       <div className="p-5 pt-0">
-        <Link to={`/details/${_id}`}>
+        <Link to={`/dashboard/details/${_id}`}>
           <button className="w-full bg-[#FF5103] text-white hover:bg-[#e44902] dark:bg-[#FF5103] dark:hover:bg-[#e44902] shadow-md transition-all rounded-md px-4 py-2">
             See More
           </button>

@@ -64,7 +64,8 @@ const AllCampaign = () => {
               </div>
 
               <div className="p-5 pt-0">
-                <Link to={`/details/${campaign._id}`}>
+                {/* Update Link to match the route for details page */}
+                <Link to={`/dashboard/details/${campaign._id}`}>
                   <button className="w-full bg-[#FF5103] text-white hover:bg-[#e44902] shadow-md transition-all rounded-md px-4 py-2">
                     See More
                   </button>
