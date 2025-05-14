@@ -7,6 +7,7 @@ import UseTitle from '../hooks/UseTitle';
 import Testimonials from './Testimonials';
 import FeaturedSuccessStories from './FeaturedSuccessStories';
 import CallToAction from './CallToAction';
+import FAQSection from './FAQSection';
 
 const Home = () => {
     UseTitle();
@@ -17,8 +18,9 @@ const Home = () => {
             <HowItWorks />
             <Testimonials />
             <FeaturedSuccessStories />
-            <CallToAction />
             <EfficiencyTransparency />
+            <CallToAction />
+            <FAQSection />
         </div>
     );
 };

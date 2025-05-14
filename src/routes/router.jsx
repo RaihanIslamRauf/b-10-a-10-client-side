@@ -14,6 +14,10 @@ import PrivateRoute from "./privateRoute";
 import DashboardLayout from "../dashboard/DashboardLayout";
 import Overview from "../dashboard/Overview";
 import Profile from "../dashboard/Profile";
+import AboutUs from "../components/AboutUs";
+import ContactUs from "../components/ContactUs";
+import PrivacyPolicy from "../components/PrivacyPolicy";
+import TermsOfService from "../components/TermsOfService";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -45,6 +49,22 @@ const router = createBrowserRouter([
           fetch(`https://b-10-a-10-server-side.vercel.app/runningCampaigns`),
       },
       {
+        path: "aboutUs",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "contactUs",
+        element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "privacyPolicy",
+        element: <PrivacyPolicy></PrivacyPolicy>,
+      },
+      {
+        path: "terms",
+        element: <TermsOfService></TermsOfService>,
+      },
+      {
         path: "/dashboard",
         element: (
           <PrivateRoute>
@@ -54,21 +74,15 @@ const router = createBrowserRouter([
         children: [
           {
             path: "overview",
-            element: (
-                <Overview></Overview>
-            ),
+            element: <Overview></Overview>,
           },
           {
             path: "profile",
-            element: (
-                <Profile></Profile>
-            ),
+            element: <Profile></Profile>,
           },
           {
             path: "add-new-campaign",
-            element: (
-                <AddNewCampaign></AddNewCampaign>
-            ),
+            element: <AddNewCampaign></AddNewCampaign>,
           },
           {
             path: "my-campaign",
@@ -80,9 +94,7 @@ const router = createBrowserRouter([
           },
           {
             path: "updateCampaign/:id",
-            element: (
-                <UpdateCampaign></UpdateCampaign>
-            ),
+            element: <UpdateCampaign></UpdateCampaign>,
             loader: ({ params }) =>
               fetch(
                 `https://b-10-a-10-server-side.vercel.app/campaigns/${params.id}`
@@ -90,15 +102,11 @@ const router = createBrowserRouter([
           },
           {
             path: "my-donations",
-            element: (
-                <MyDonations></MyDonations>
-            ),
+            element: <MyDonations></MyDonations>,
           },
           {
             path: "details/:id",
-            element: (
-                <Details></Details>
-            ),
+            element: <Details></Details>,
             loader: ({ params }) =>
               fetch(
                 `https://b-10-a-10-server-side.vercel.app/campaigns/${params.id}`

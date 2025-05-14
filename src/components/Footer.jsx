@@ -1,6 +1,6 @@
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
-import { RiRefund2Line } from "react-icons/ri"; 
-import { Link } from "react-router-dom"; 
+import { RiRefund2Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="px-4 md:px-8 lg:px-16 footer lg:flex-row flex-col justify-between items-start gap-8">
         {/* Brand Section */}
         <div className="flex items-center gap-2">
-          <RiRefund2Line className="text-[20px] text-orange-500" /> 
+          <RiRefund2Line className="text-[20px] text-orange-500" />
           <h1 className="text-[20px] text-[#FF5103] font-bold italic">CrowdCube</h1>
         </div>
         <p className="text-black dark:text-white max-w-sm ml-2">
@@ -20,18 +20,11 @@ const Footer = () => {
           <h6 className="footer-title text-lg font-semibold mb-3 text-[#FF5103]">Quick Links</h6>
           <ul className="flex flex-col gap-2">
             <li>
-              <Link to="/about" className="hover:text-red-500">About Us</Link>
-            </li>
-            <li>
-              <Link to="/projects" className="hover:text-red-500">Our Projects</Link>
-            </li>
-            <li>
-              <Link to="/faq" className="hover:text-red-500">FAQs</Link>
-            </li>
-            <li>
+              {/* Route for Privacy Policy */}
               <Link to="/privacyPolicy" className="hover:text-red-500">Privacy Policy</Link>
             </li>
             <li>
+              {/* Route for Terms of Service */}
               <Link to="/terms" className="hover:text-red-500">Terms of Service</Link>
             </li>
           </ul>
