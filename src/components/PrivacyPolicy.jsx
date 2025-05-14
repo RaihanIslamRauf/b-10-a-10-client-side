@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
       <h1 className="text-3xl font-bold text-center text-[#FF5103] mb-6">Privacy Policy</h1>
       <div className="max-w-4xl mx-auto text-lg text-gray-800 dark:text-white">
         <p className="mb-6">
-          At Crowdcube, we take your privacy seriously. This Privacy Policy outlines the types of personal
+          At CrowdCube, we take your privacy seriously. This Privacy Policy outlines the types of personal
           information we collect and how it is used and protected. By using our website, you consent to the
           practices described in this policy.
         </p>

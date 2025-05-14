@@ -12,7 +12,7 @@ const DashboardLayout = () => {
 
       {/* Main Content Section */}
       <div className="p-6 w-full text-white">
-        <h2 className="text-3xl font-bold mb-4 text-black dark:text-white">Welcome to Crowdcube Dashboard</h2>
+        <h2 className="text-3xl font-bold mb-4 text-black dark:text-white">Welcome to CrowdCube Dashboard</h2>
         <p className="text-lg mb-6 text-black dark:text-white">Select an option from the sidebar to manage your campaigns, donations, and profile.</p>
         <Outlet />
       </div>

@@ -6,7 +6,7 @@ const TermsOfService = () => {
       <h1 className="text-3xl font-bold text-center text-[#FF5103] mb-6">Terms of Service</h1>
       <div className="max-w-4xl mx-auto text-lg text-gray-800 dark:text-white">
         <p className="mb-6">
-          These Terms of Service ("Terms") govern your use of the Crowdcube website and services. By accessing or using our website, you agree to comply with and be bound by these Terms. If you do not agree with these Terms, please do not use our services.
+          These Terms of Service ("Terms") govern your use of the CrowdCube website and services. By accessing or using our website, you agree to comply with and be bound by these Terms. If you do not agree with these Terms, please do not use our services.
         </p>
 
         <h2 className="text-2xl font-semibold text-[#FF5103] mb-4">1. Acceptance of Terms</h2>
