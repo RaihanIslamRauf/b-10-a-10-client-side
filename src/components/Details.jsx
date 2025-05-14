@@ -2,11 +2,13 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../provider/AuthProvider';
+import UseTitle from '../hooks/UseTitle';
 
 const Details = () => {
   const campaign = useLoaderData();
   const { _id, title, description, imageUrl, minimumDonation, deadline, type } = campaign;
   const { user } = useContext(AuthContext);
+  UseTitle();
 
   const isExpired = new Date(deadline) < new Date();
 
@@ -76,7 +78,7 @@ const Details = () => {
   };
 
   return (
-    <div className="details-container max-w-4xl mx-auto p-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg transition-colors">
+    <div className="details-container max-w-7xl mx-auto p-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg transition-colors">
       <div className="details-image mb-6">
         <img
           src={imageUrl}

@@ -3,12 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import UseTitle from "../hooks/UseTitle";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);  // Change createNewUser to createUser
   const [error, setError] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  UseTitle();
 
   const validatePassword = (password) => {
     const errors = [];

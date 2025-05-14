@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaGoogle } from "react-icons/fa";
 import Swal from "sweetalert2";
+import UseTitle from "../hooks/UseTitle";
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  UseTitle();
 
   const handleSignIn = (e) => {
     e.preventDefault();

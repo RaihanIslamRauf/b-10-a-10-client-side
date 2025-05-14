@@ -2,10 +2,12 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import Loader from '../components/Loader'; 
+import UseTitle from '../hooks/UseTitle';
 
 const MyDonations = () => {
   const { user, loading } = useContext(AuthContext);
   const [donations, setDonations] = useState([]);
+  UseTitle();
 
   useEffect(() => {
     if (user?.email) {

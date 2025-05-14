@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import Campaign from '../components/Campaign';
 import Loader from '../components/Loader'; 
+import UseTitle from '../hooks/UseTitle';
 
 const Overview = () => {
   const [featuredCampaigns, setFeaturedCampaigns] = useState([]);
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalCampaigns, setTotalCampaigns] = useState(0);
   const [loading, setLoading] = useState(true);
+  UseTitle();
 
   useEffect(() => {
     const fetchOverviewData = async () => {

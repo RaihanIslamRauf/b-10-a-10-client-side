@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 import Loader from "../components/Loader";
+import UseTitle from "../hooks/UseTitle";
 
 const MyCampaign = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const [userCampaign, setUserCampaign] = useState([]);
   const [loading, setLoading] = useState(true);
+  UseTitle();
 
   useEffect(() => {
     if (email) {

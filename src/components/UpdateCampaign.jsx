@@ -2,11 +2,13 @@ import { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import UseTitle from '../hooks/UseTitle';
 
 const UpdateCampaign = () => {
     const { user } = useContext(AuthContext);
     const campaign = useLoaderData();
     const { _id, imageUrl, title, description, minimumDonation, deadline, type } = campaign;
+    UseTitle();
     
     const handleUpdateCampaign = (e) => {
         e.preventDefault();

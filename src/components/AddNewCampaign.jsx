@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../provider/AuthProvider';
+import UseTitle from '../hooks/UseTitle';
 
 const AddNewCampaign = () => {
   const { user } = useContext(AuthContext);
-
+  UseTitle();
   const handleAddCampaign = (e) => {
     e.preventDefault();
 

@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import UseTitle from "../hooks/UseTitle";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
   const [fetchedUser, setFetchedUser] = useState(null);
+  UseTitle();
 
   useEffect(() => {
     const fetchUserData = async () => {

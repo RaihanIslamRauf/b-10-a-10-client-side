@@ -76,7 +76,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm font-semibold dropdown-content mt-3 p-2 shadow bg-white dark:bg-gray-800 rounded-box w-52 z-50 text-black dark:text-white"
+              className="menu menu-sm font-semibold dropdown-content mt-3 p-2 shadow bg-white dark:bg-gray-900 rounded-box w-52 z-50 text-black dark:text-white"
             >
               <NavLink className={navLinkStyle} to="/">Home</NavLink>
               <NavLink className={navLinkStyle} to="/all-campaign">All Campaign</NavLink>
@@ -92,7 +92,7 @@ const Navbar = () => {
         {/* End */}
         <div className="navbar-end gap-3 items-center">
           {/* Center Nav Links */}
-          <ul className="flex gap-4">
+          <ul className="hidden lg:flex gap-4">
             <NavLink className={navLinkStyle} to="/">Home</NavLink>
             <NavLink className={navLinkStyle} to="/all-campaign">All Campaign</NavLink>
             <NavLink className={navLinkStyle} to="/dashboard">Dashboard</NavLink>

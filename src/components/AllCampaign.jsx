@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../components/Loader'; // adjust the path if needed
+import UseTitle from '../hooks/UseTitle';
 
 const AllCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
+  UseTitle();
 
   useEffect(() => {
     fetch('https://b-10-a-10-server-side.vercel.app/campaigns')
