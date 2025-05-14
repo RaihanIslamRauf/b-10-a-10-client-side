@@ -78,7 +78,7 @@ const Details = () => {
   };
 
   return (
-    <div className="details-container max-w-7xl mx-auto p-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg transition-colors">
+    <div className="details-container mx-auto p-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg transition-colors">
       <div className="details-image mb-6">
         <img
           src={imageUrl}
