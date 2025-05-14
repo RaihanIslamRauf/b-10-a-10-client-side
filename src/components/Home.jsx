@@ -4,6 +4,9 @@ import RunningCampaign from './RunningCampaign';
 import HowItWorks from './HowItWorks';
 import EfficiencyTransparency from './EfficiencyTransparency';
 import UseTitle from '../hooks/UseTitle';
+import Testimonials from './Testimonials';
+import FeaturedSuccessStories from './FeaturedSuccessStories';
+import CallToAction from './CallToAction';
 
 const Home = () => {
     UseTitle();
@@ -12,6 +15,9 @@ const Home = () => {
             <Banner />
             <RunningCampaign />
             <HowItWorks />
+            <Testimonials />
+            <FeaturedSuccessStories />
+            <CallToAction />
             <EfficiencyTransparency />
         </div>
     );

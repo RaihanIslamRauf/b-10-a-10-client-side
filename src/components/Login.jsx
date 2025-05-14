@@ -4,11 +4,13 @@ import { AuthContext } from "../provider/AuthProvider";
 import { FaGoogle } from "react-icons/fa";
 import Swal from "sweetalert2";
 import UseTitle from "../hooks/UseTitle";
+import Lottie from "lottie-react";
+import loginAnimation from "../assets/lottie1.json"; // Your Lottie animation file
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
-  UseTitle();
+  UseTitle("Login");
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -26,13 +28,8 @@ const Login = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(loginInfo),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("Sign-in info updated in DB", data);
-          });
+        });
 
-        // Show success alert for normal login
         Swal.fire({
           icon: "success",
           title: "Login Successful",
@@ -63,11 +60,7 @@ const Login = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(loginInfo),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("Sign-in info updated in DB", data);
-          });
+        });
 
         Swal.fire({
           icon: "success",
@@ -89,57 +82,64 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-[#E2DFD2] dark:bg-gray-800 flex justify-center items-center px-4">
-      <div className="card w-full max-w-lg bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white rounded-md p-10 shadow-md">
-        <h2 className="text-2xl font-semibold text-center mb-4">
-          Login to your account
-        </h2>
-        <form onSubmit={handleSignIn} className="card-body p-0 space-y-4">
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text text-gray-700 dark:text-gray-300">Email</span>
-            </label>
-            <input
-              name="email"
-              type="email"
-              placeholder="email"
-              className="input input-bordered bg-gray-100 dark:bg-gray-800 dark:border-gray-700 text-gray-800 dark:text-white"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text text-gray-700 dark:text-gray-300">Password</span>
-            </label>
-            <input
-              name="password"
-              type="password"
-              placeholder="password"
-              className="input input-bordered bg-gray-100 dark:bg-gray-800 dark:border-gray-700 text-gray-800 dark:text-white"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <button className="btn bg-[#FF5103] hover:bg-[#e44902] text-white rounded-md">
-              Login
+      <div className="flex flex-col md:flex-row items-center gap-8 w-full max-w-5xl">
+        {/* Login Form */}
+        <div className="card w-full md:w-1/2 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white rounded-md p-10 shadow-md">
+          <h2 className="text-2xl font-semibold text-center mb-4">
+            Login to your account
+          </h2>
+          <form onSubmit={handleSignIn} className="card-body p-0 space-y-4">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-gray-700 dark:text-gray-300">Email</span>
+              </label>
+              <input
+                name="email"
+                type="email"
+                placeholder="email"
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 dark:border-gray-700 text-gray-800 dark:text-white"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-gray-700 dark:text-gray-300">Password</span>
+              </label>
+              <input
+                name="password"
+                type="password"
+                placeholder="password"
+                className="input input-bordered bg-gray-100 dark:bg-gray-800 dark:border-gray-700 text-gray-800 dark:text-white"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <button className="btn bg-[#FF5103] hover:bg-[#e44902] text-white rounded-md">
+                Login
+              </button>
+            </div>
+          </form>
+
+          <div className="flex md:flex-col justify-center mt-4">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn bg-red-600 md:text-sm hover:bg-red-700 text-white rounded-md w-full md:w-1/2"
+            >
+              <FaGoogle className="mr-2" /> Login with Google
             </button>
           </div>
-        </form>
 
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={handleGoogleSignIn}
-            className="btn bg-red-600 hover:bg-red-700 text-white rounded-md w-full md:w-1/2"
-          >
-            <FaGoogle className="mr-2" /> Login with Google
-          </button>
+          <p className="text-center font-semibold mt-4 text-gray-700 dark:text-gray-300">
+            Don’t have an account?{" "}
+            <Link to="/register" className="text-[#FF5103] hover:underline">
+              Register
+            </Link>
+          </p>
         </div>
-
-        <p className="text-center font-semibold mt-4 text-gray-700 dark:text-gray-300">
-          Don’t have an account?{" "}
-          <Link to="/register" className="text-[#FF5103] hover:underline">
-            Register
-          </Link>
-        </p>
+       {/* Lottie Animation - Responsive */}
+        <div className="w-full md:w-1/2 mb-8 md:mb-0">
+          <Lottie animationData={loginAnimation} loop={true} style={{ height: "300px", width: "100%" }} />
+        </div>
       </div>
     </div>
   );

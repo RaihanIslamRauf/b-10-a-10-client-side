@@ -4,9 +4,10 @@ import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import UseTitle from "../hooks/UseTitle";
-
+import Lottie from "lottie-react";
+import registerAnimation from "../assets/lottie2.json"; 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);  // Change createNewUser to createUser
+  const { createUser } = useContext(AuthContext);
   const [error, setError] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -28,57 +29,62 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError({});
     const form = new FormData(e.target);
     const name = form.get("name");
-    if (name.length < 5) {
-      setError({ ...error, name: "Name must be more than 5 characters long." });
-      return;
-    }
     const email = form.get("email");
     const photo = form.get("photo");
     const password = form.get("password");
 
-    const passwordErrors = validatePassword(password);
-    if (passwordErrors.length > 0) {
-      setError({ ...error, password: passwordErrors.join(" ") });
+    if (name.length < 5) {
+      setError({ name: "Name must be more than 5 characters long." });
       return;
     }
 
-    createUser(email, password)  // Use createUser here
+    const passwordErrors = validatePassword(password);
+    if (passwordErrors.length > 0) {
+      setError({ password: passwordErrors.join(" ") });
+      return;
+    }
+
+    createUser(email, password)
       .then((result) => {
         const createdAt = result?.user?.metadata?.creationTime;
         const newUser = { name, email, photo, createdAt };
 
-        // Save new user info to the database
-        fetch(`https://b-10-a-10-server-side.vercel.app/users`, {
+        return fetch("https://b-10-a-10-server-side.vercel.app/users", {
           method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              // Show success alert
-              Swal.fire({
-                title: "Success!",
-                text: "Your account has been created successfully!",
-                icon: "success",
-                confirmButtonText: "OK",
-              }).then(() => {
-                navigate("/login"); // Navigate to the login page
-              });
-            }
+        });
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Your account has been created successfully!",
+            icon: "success",
+            confirmButtonText: "OK",
+          }).then(() => {
+            navigate("/login");
           });
+        }
       })
       .catch((error) => {
         console.error("Error during registration:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "Registration failed. Please try again.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
       });
   };
 
   return (
-    <div className="min-h-screen bg-[#E2DFD2] dark:bg-gray-800 p-4 flex justify-center items-center">
+    <div className="min-h-screen bg-[#E2DFD2] dark:bg-gray-800 p-4 flex flex-col md:flex-row justify-center items-center gap-10">
+      {/* Form Section */}
       <div className="card bg-white dark:bg-gray-900 w-full max-w-lg shrink-0 rounded-md p-10">
         <h2 className="text-2xl font-semibold text-center text-gray-800 dark:text-white">
           Register your account
@@ -157,6 +163,11 @@ const Register = () => {
             Login
           </Link>
         </p>
+      </div>
+
+      {/* Lottie Animation Section */}
+      <div className="w-full max-w-md">
+        <Lottie animationData={registerAnimation} loop={true} />
       </div>
     </div>
   );

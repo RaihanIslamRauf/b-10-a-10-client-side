@@ -6,7 +6,7 @@ import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons
 
 const Banner = () => {
     return (
-        <div className="carousel w-full rounded-md">
+        <div className="carousel w-full rounded-md mb-8">
             {/* Slide 1 */}
             <div id="slide1" className="carousel-item bg-cover relative w-full sm:h-[300px] md:h-[300px] lg:h-[400px]">
                 <img

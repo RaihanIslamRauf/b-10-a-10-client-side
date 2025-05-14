@@ -25,7 +25,6 @@ const AllCampaign = () => {
       });
   }, []);
 
-  // Sort logic
   const sortedCampaigns = [...campaigns].sort((a, b) => {
     if (sortBy === 'title') return a.title.localeCompare(b.title);
     if (sortBy === 'donationAsc') return parseInt(a.minimumDonation) - parseInt(b.minimumDonation);
@@ -34,7 +33,6 @@ const AllCampaign = () => {
     return 0;
   });
 
-  // Search logic
   const filteredCampaigns = sortedCampaigns.filter((campaign) =>
     campaign.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -48,6 +46,7 @@ const AllCampaign = () => {
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 dark:text-white">
         All Campaigns
       </h1>
+
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
         {/* Search Input */}
         <div className="relative w-full md:w-1/2">
@@ -90,7 +89,7 @@ const AllCampaign = () => {
           {filteredCampaigns.map((campaign) => (
             <div
               key={campaign._id}
-              className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
+              className="flex flex-col justify-between h-full bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
             >
               <img
                 src={campaign.imageUrl}
@@ -98,29 +97,28 @@ const AllCampaign = () => {
                 className="w-full h-48 object-cover"
               />
 
-              <div className="p-5 space-y-3">
-                <h3 className="text-lg font-bold text-gray-800 dark:text-white">{campaign.title}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Type: {campaign.type}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Min Donation:{' '}
-                  <span className="text-gray-800 dark:text-white font-semibold">
-                    ${campaign.minimumDonation}
-                  </span>
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Deadline:{' '}
-                  <span className="text-gray-700 dark:text-white font-semibold">
-                    {new Date(campaign.deadline).toLocaleDateString()}
-                  </span>
-                </p>
-              </div>
+              <div className="p-5 flex flex-col flex-grow justify-between">
+                <div className="space-y-2">
+                  <h3 className="text-lg font-bold text-gray-800 dark:text-white">{campaign.title}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Type: {campaign.type}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    Min Donation: <span className="text-gray-800 dark:text-white font-semibold">${campaign.minimumDonation}</span>
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    Deadline:{' '}
+                    <span className="text-gray-700 dark:text-white font-semibold">
+                      {new Date(campaign.deadline).toLocaleDateString()}
+                    </span>
+                  </p>
+                </div>
 
-              <div className="p-5 pt-0">
-                <Link to={`/dashboard/details/${campaign._id}`}>
-                  <button className="w-full bg-[#FF5103] text-white hover:bg-[#e44902] shadow-md transition-all rounded-md px-4 py-2">
-                    See More
-                  </button>
-                </Link>
+                <div className="mt-6">
+                  <Link to={`/dashboard/details/${campaign._id}`}>
+                    <button className="w-full bg-[#FF5103] text-white hover:bg-[#e44902] shadow-md transition-all rounded-md px-4 py-2">
+                      See More
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

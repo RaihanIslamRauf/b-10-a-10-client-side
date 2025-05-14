@@ -6,7 +6,7 @@ const DashboardLayout = () => {
   UseTitle();
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen mt-4 mb-4 dark:bg-gray-800">
+    <div className="flex flex-col md:flex-row min-h-screen mt-8 mb-8 dark:bg-gray-800">
       {/* Sidebar at the top on mobile, left on larger screens */}
       <Sidebar />
 
