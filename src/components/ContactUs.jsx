@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
+import UseTitle from '../hooks/UseTitle';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const ContactUs = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  UseTitle();
 
   const handleChange = (e) => {
     const { name, value } = e.target;

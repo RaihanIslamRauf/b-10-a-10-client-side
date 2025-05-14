@@ -17,6 +17,11 @@ const UseTitle = () => {
       "/dashboard/add-new-campaign": "Add Campaign - CrowdCube",
       "/dashboard/my-campaign": "My Campaigns - CrowdCube",
       "/dashboard/my-donations": "My Donations - CrowdCube",
+      "/aboutUs": "About Us - CrowdCube",
+      "/contactUs": "Contact Us - CrowdCube",
+      "/terms": "Terms Of Service - CrowdCube",
+      "/privacyPolicy": "Privacy Policy - CrowdCube"
+
     };
 
     if (location.pathname.startsWith("/dashboard/updateCampaign/")) {

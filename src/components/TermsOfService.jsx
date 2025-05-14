@@ -1,6 +1,8 @@
 import React from 'react';
+import UseTitle from '../hooks/UseTitle';
 
 const TermsOfService = () => {
+  UseTitle();
   return (
     <div className="container mx-auto mb-8 px-4 py-8">
       <h1 className="text-3xl font-bold text-center text-[#FF5103] mb-6">Terms of Service</h1>
