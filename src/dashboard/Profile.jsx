@@ -28,22 +28,22 @@ const Profile = () => {
   }, [user]);
 
   return (
-    <div className="container mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow">
-      <h2 className="text-2xl font-semibold mb-6 text-black dark:text-white">Profile</h2>
+    <div className="container mx-auto p-4 sm:p-6 bg-white dark:bg-gray-900 rounded-lg shadow">
+      <h2 className="text-xl sm:text-2xl font-semibold mb-6 text-black dark:text-white">Profile</h2>
 
-      <div className="flex gap-6 items-center">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:items-start">
         {/* Profile Avatar */}
         <img
           src={fetchedUser?.photo || user?.photoURL || "/default-avatar.png"}
           alt="User Avatar"
-          className="w-24 h-24 rounded-full border-2 border-[#FF5103] object-cover"
+          className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-[#FF5103] object-cover"
         />
 
-        <div>
-          <h3 className="text-xl font-semibold text-black dark:text-white">
+        <div className="text-center sm:text-left">
+          <h3 className="text-lg sm:text-xl font-semibold text-black dark:text-white">
             Name: {fetchedUser?.name || user?.displayName || "User Name"}
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-300">
+          <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
             Email: {fetchedUser?.email || user?.email || "No Email"}
           </p>
         </div>
