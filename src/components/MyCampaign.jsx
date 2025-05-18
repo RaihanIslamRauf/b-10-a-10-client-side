@@ -59,8 +59,8 @@ const MyCampaign = () => {
   if (loading) return <Loader />;
 
   return (
-    <div className="lg:w-4/5 mx-auto py-6 px-4">
-      <h1 className="text-4xl font-bold text-center mb-8 text-black dark:text-white">
+    <div className="w-full max-w-7xl mx-auto py-6 px-4">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center mb-6 text-black dark:text-white">
         My Campaigns
       </h1>
 
@@ -69,51 +69,41 @@ const MyCampaign = () => {
           No campaigns available here.
         </p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full border-collapse border border-gray-300 dark:border-gray-700">
-            <thead>
-              <tr className="bg-gray-50 dark:bg-gray-900 text-left">
-                <th className="border border-gray-300 dark:border-gray-900 px-4 py-2 text-black dark:text-gray-200">
-                  Title
-                </th>
-                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-200">
-                  Type
-                </th>
-                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-200">
-                  Minimum Donation
-                </th>
-                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-200">
-                  Deadline
-                </th>
-                <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-200">
-                  Actions
-                </th>
+        <div className="overflow-x-auto rounded-lg shadow">
+          <table className="min-w-full text-sm sm:text-base border border-gray-300 dark:border-gray-700">
+            <thead className="bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+              <tr>
+                <th className="px-4 py-2 border border-gray-300 dark:border-gray-700">Title</th>
+                <th className="px-4 py-2 border border-gray-300 dark:border-gray-700">Type</th>
+                <th className="px-4 py-2 border border-gray-300 dark:border-gray-700">Min Donation</th>
+                <th className="px-4 py-2 border border-gray-300 dark:border-gray-700">Deadline</th>
+                <th className="px-4 py-2 border border-gray-300 dark:border-gray-700">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {userCampaign?.map((campaign) => (
-                <tr key={campaign?._id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-100">
-                    {campaign?.title}
+              {userCampaign.map((campaign) => (
+                <tr key={campaign._id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                  <td className="px-4 py-2 border border-gray-300 dark:border-gray-700 text-black dark:text-gray-100">
+                    {campaign.title}
                   </td>
-                  <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-100">
-                    {campaign?.type}
+                  <td className="px-4 py-2 border border-gray-300 dark:border-gray-700 text-black dark:text-gray-100">
+                    {campaign.type}
                   </td>
-                  <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-100">
-                    ${campaign?.minimumDonation}
+                  <td className="px-4 py-2 border border-gray-300 dark:border-gray-700 text-black dark:text-gray-100">
+                    ${campaign.minimumDonation}
                   </td>
-                  <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-black dark:text-gray-100">
+                  <td className="px-4 py-2 border border-gray-300 dark:border-gray-700 text-black dark:text-gray-100">
                     {new Date(campaign.deadline).toLocaleDateString()}
                   </td>
-                  <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 space-x-2">
+                  <td className="px-4 py-2 border border-gray-300 dark:border-gray-700 space-y-2 sm:space-x-2">
                     <Link to={`/dashboard/updateCampaign/${campaign._id}`}>
-                      <button className="btn bg-green-600 hover:bg-green-700 text-white">
+                      <button className="w-full sm:w-auto btn bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded">
                         Update
                       </button>
                     </Link>
                     <button
                       onClick={() => handleDelete(campaign._id)}
-                      className="btn bg-red-600 hover:bg-red-700 text-white"
+                      className="w-full sm:w-auto btn bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
                     >
                       Delete
                     </button>

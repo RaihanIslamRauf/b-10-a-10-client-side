@@ -37,7 +37,7 @@ const MyDonations = () => {
           {donations.map((donation) => (
             <div
               key={donation._id}
-              className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-transform transform hover:scale-105"
+              className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-transform transform hover:scale-105 flex flex-col justify-between h-full"
             >
               <img
                 src={donation.imageUrl}
@@ -45,7 +45,7 @@ const MyDonations = () => {
                 className="w-full h-48 object-cover"
               />
 
-              <div className="p-5 space-y-2">
+              <div className="p-5 space-y-2 flex-1">
                 <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">
                   {donation.title}
                 </h3>
