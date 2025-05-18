@@ -11,6 +11,7 @@ const Navbar = () => {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
   const [fetchedUser, setFetchedUser] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,9 +25,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(
-          `https://b-10-a-10-server-side.vercel.app/users`
-        );
+        const response = await fetch(`https://b-10-a-10-server-side.vercel.app/users`);
         const data = await response.json();
         setFetchedUser(data.find((u) => u.email === user?.email));
       } catch (error) {
@@ -63,6 +62,10 @@ const Navbar = () => {
         : "text-black dark:text-white hover:text-[#FF5103] hover:bg-gray-100 dark:hover:bg-gray-800"
     }`;
 
+  const handleLinkClick = () => {
+    setMenuOpen(false); // Close mobile menu
+  };
+
   return (
     <div
       className={`sticky top-0 z-50 transition-all duration-300 shadow-md ${
@@ -73,32 +76,43 @@ const Navbar = () => {
         {/* Start */}
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
               <FaBars className="text-[20px] text-[#FF5103]" />
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm font-semibold dropdown-content mt-3 p-2 shadow bg-white dark:bg-gray-800 rounded-box w-52 z-50 text-black dark:text-white"
-            >
-              <NavLink className={navLinkStyle} to="/">
-                Home
-              </NavLink>
-              <NavLink className={navLinkStyle} to="/all-campaign">
-                All Campaign
-              </NavLink>
-                <NavLink className={navLinkStyle} to="/dashboard">
+            {menuOpen && (
+              <ul
+                tabIndex={0}
+                className="menu menu-sm font-semibold dropdown-content mt-3 p-2 shadow bg-white dark:bg-gray-800 rounded-box w-52 z-50 text-black dark:text-white"
+              >
+                <NavLink className={navLinkStyle} to="/" onClick={handleLinkClick}>
+                  Home
+                </NavLink>
+                <NavLink className={navLinkStyle} to="/all-campaign" onClick={handleLinkClick}>
+                  All Campaign
+                </NavLink>
+                <NavLink className={navLinkStyle} to="/dashboard" onClick={handleLinkClick}>
                   Dashboard
                 </NavLink>
-               <NavLink className={navLinkStyle} to="/aboutUs">About Us</NavLink>
-<NavLink className={navLinkStyle} to="/contactUs">Contact Us</NavLink>
-            </ul>
+                <NavLink className={navLinkStyle} to="/aboutUs" onClick={handleLinkClick}>
+                  About Us
+                </NavLink>
+                <NavLink className={navLinkStyle} to="/contactUs" onClick={handleLinkClick}>
+                  Contact Us
+                </NavLink>
+              </ul>
+            )}
           </div>
           <NavLink
             to="/"
-            className="btn btn-ghost text-xl flex items-center gap-1"
+            className="btn btn-ghost text-sm lg:text-xl flex items-center gap-1"
           >
-            <RiRefund2Line className="text-[20px] text-[#FF5103]" />
-            <h1 className="text-[20px] text-[#FF5103] font-bold italic">
+            <RiRefund2Line className="text-[18px] lg:text-[20px] text-[#FF5103]" />
+            <h1 className="text-[16px] lg:text-[20px] text-[#FF5103] font-bold italic">
               CrowdCube
             </h1>
           </NavLink>
@@ -126,27 +140,26 @@ const Navbar = () => {
         </div>
 
         {/* End */}
-        <div className="navbar-end gap-3 items-center">
+        <div className="navbar-end items-center gap-2 lg:gap-4">
           {/* Dark Mode Toggle */}
           <button
             onClick={toggleTheme}
-            className="text-xl px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition"
+            className="text-sm lg:text-xl px-2 py-1 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition"
             title="Toggle Theme"
           >
             {darkMode ? "🌞" : "🌙"}
           </button>
 
           {user ? (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 lg:gap-3">
               <div className="relative group cursor-pointer">
                 <img
                   src={
                     fetchedUser?.photo || user.photoURL || "/default-avatar.png"
                   }
                   alt="User Avatar"
-                  className="w-10 h-10 rounded-full border-2 border-[#FF5103] object-cover"
+                  className="w-8 h-8 lg:w-10 lg:h-10 rounded-full border-2 border-[#FF5103] object-cover"
                 />
-                {/* Dropdown */}
                 <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-all z-50 p-4 text-sm text-black dark:text-white">
                   <p className="font-semibold truncate">
                     {fetchedUser?.name || user.displayName || "User"}
@@ -158,20 +171,20 @@ const Navbar = () => {
               </div>
               <button
                 onClick={handleLogOut}
-                className="btn bg-[#FF5103] text-white hover:bg-[#e44d00] transition-all duration-300"
+                className="btn bg-[#FF5103] text-white text-xs lg:text-sm px-3 py-1 lg:px-4 lg:py-2 hover:bg-[#e44d00] transition-all duration-300"
               >
                 Logout
               </button>
             </div>
           ) : (
-            <div className="flex gap-2">
+            <div className="flex items-center gap-1 lg:gap-2">
               <NavLink to="/login">
-                <button className="btn bg-[#FF5103] text-white text-sm hover:bg-[#e44d00]">
+                <button className="btn bg-[#FF5103] text-white text-xs lg:text-sm px-3 py-1 lg:px-4 lg:py-2 hover:bg-[#e44d00]">
                   Login
                 </button>
               </NavLink>
               <NavLink to="/register">
-                <button className="btn bg-[#FF5103] text-white text-sm hover:bg-[#e44d00]">
+                <button className="btn bg-[#FF5103] text-white text-xs lg:text-sm px-3 py-1 lg:px-4 lg:py-2 hover:bg-[#e44d00]">
                   Register
                 </button>
               </NavLink>
