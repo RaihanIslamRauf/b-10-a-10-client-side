@@ -1,4 +1,5 @@
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import { SiX } from "react-icons/si"; 
 import { RiRefund2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
@@ -20,11 +21,9 @@ const Footer = () => {
           <h6 className="footer-title text-lg font-semibold mb-3 text-[#FF5103]">Quick Links</h6>
           <ul className="flex flex-col gap-2">
             <li>
-              {/* Route for Privacy Policy */}
               <Link to="/privacyPolicy" className="hover:text-red-500">Privacy Policy</Link>
             </li>
             <li>
-              {/* Route for Terms of Service */}
               <Link to="/terms" className="hover:text-red-500">Terms of Service</Link>
             </li>
           </ul>
@@ -37,8 +36,8 @@ const Footer = () => {
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-500">
               <FaFacebookF size={24} />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-500">
-              <FaTwitter size={24} />
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-500">
+              <SiX size={24} />
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-red-500">
               <FaInstagram size={24} />
